@@ -8,11 +8,11 @@ import java.lang.annotation.Target;
 /**
  * 权限校验
  *
- * 
- * 
+ *
+ *
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD) // 该注解将应用于方法
+@Retention(RetentionPolicy.RUNTIME) // 该注解在运行时保留
 public @interface AuthCheck {
 
     /**

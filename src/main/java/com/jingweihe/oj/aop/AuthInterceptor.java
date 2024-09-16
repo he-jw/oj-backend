@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 权限校验 AOP
  *
- * 
- * 
+ *
+ *
  */
 @Aspect
 @Component
@@ -37,7 +37,8 @@ public class AuthInterceptor {
      * @param authCheck
      * @return
      */
-    @Around("@annotation(authCheck)")
+    //该切面逻辑将应用到所有使用了 @AuthCheck 自定义注解的地方。
+    @Around("@annotation(authCheck)")  //@annotation(<注解参数>) 则可以在切面方法中通过参数传递注解实例，允许你访问注解的属性
     public Object doInterceptor(ProceedingJoinPoint joinPoint, AuthCheck authCheck) throws Throwable {
         String mustRole = authCheck.mustRole();
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();

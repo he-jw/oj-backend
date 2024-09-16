@@ -6,10 +6,10 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 import java.util.List;
 
 /**
- * 帖子 ES 操作
+ * 帖子 ES 操作，用户操作es
  *
- * 
- * 
+ *
+ *
  */
 public interface PostEsDao extends ElasticsearchRepository<PostEsDTO, Long> {
 
