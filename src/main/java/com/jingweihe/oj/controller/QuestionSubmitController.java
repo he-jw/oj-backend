@@ -45,7 +45,7 @@ public class QuestionSubmitController {
      * @param request
      * @return resultNum
      */
-    @PostMapping("/")
+    @PostMapping("/do")
     public BaseResponse<Long> doQuestionSubmit(@RequestBody QuestionSubmitAddRequest questionSubmitAddRequest,
             HttpServletRequest request) {
         if (questionSubmitAddRequest == null || questionSubmitAddRequest.getQuestionId() <= 0) {

@@ -7,7 +7,6 @@ server:
     session:
       cookie:
         max-age: 2592000
-
 spring:
   application:
     name: oj-backend
@@ -94,3 +93,6 @@ wx:
   open:
     appId: xxx
     appSecret: xxx
+# 代码沙箱配置
+codesandbox:
+  type: example

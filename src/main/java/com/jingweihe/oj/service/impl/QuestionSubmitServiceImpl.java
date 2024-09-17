@@ -8,6 +8,7 @@ import com.jingweihe.oj.common.ErrorCode;
 import com.jingweihe.oj.constant.CommonConstant;
 import com.jingweihe.oj.constant.UserConstant;
 import com.jingweihe.oj.exception.BusinessException;
+import com.jingweihe.oj.judge.JudgeService;
 import com.jingweihe.oj.mapper.QuestionSubmitMapper;
 import com.jingweihe.oj.model.dto.questionsubmit.QuestionSubmitAddRequest;
 import com.jingweihe.oj.model.dto.questionsubmit.QuestionSubmitQueryRequest;
@@ -22,6 +23,7 @@ import com.jingweihe.oj.service.QuestionSubmitService;
 import com.jingweihe.oj.utils.SqlUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,6 +38,9 @@ import java.util.stream.Collectors;
 @Service
 public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper, QuestionSubmit> implements QuestionSubmitService{
 
+    @Resource
+    @Lazy
+    private JudgeService judgeService;
     @Resource
     private QuestionService questionService;
 
@@ -70,6 +75,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         if(!save){
             throw new BusinessException(ErrorCode.SYSTEM_ERROR);
         }
+        judgeService.doJudge(questionSubmit.getId());
         return questionSubmit.getId();
     }
 
