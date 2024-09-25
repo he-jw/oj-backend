@@ -1,6 +1,6 @@
 package com.jingweihe.oj.judge.strategy;
 
-import com.jingweihe.oj.model.dto.questionsubmit.JudgeInfo;
+import com.jingweihe.oj.judge.codesandbox.mode.JudgeInfo;
 
 /**
  * 判题策略

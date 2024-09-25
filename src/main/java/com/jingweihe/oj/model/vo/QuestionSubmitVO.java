@@ -1,7 +1,7 @@
 package com.jingweihe.oj.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.jingweihe.oj.model.dto.questionsubmit.JudgeInfo;
+import com.jingweihe.oj.judge.codesandbox.mode.JudgeInfo;
 import com.jingweihe.oj.model.entity.QuestionSubmit;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;

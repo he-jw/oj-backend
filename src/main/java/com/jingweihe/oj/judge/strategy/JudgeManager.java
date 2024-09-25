@@ -2,7 +2,7 @@ package com.jingweihe.oj.judge.strategy;
 
 import com.jingweihe.oj.judge.strategy.impl.DefaultJudgeStrategy;
 import com.jingweihe.oj.judge.strategy.impl.JavaLanguageJudgeStrategy;
-import com.jingweihe.oj.model.dto.questionsubmit.JudgeInfo;
+import com.jingweihe.oj.judge.codesandbox.mode.JudgeInfo;
 import com.jingweihe.oj.model.entity.QuestionSubmit;
 import com.jingweihe.oj.model.enums.QuestionSubmitLanguageEnum;
 import org.springframework.stereotype.Service;

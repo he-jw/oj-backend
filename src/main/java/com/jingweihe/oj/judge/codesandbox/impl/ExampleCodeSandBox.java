@@ -3,7 +3,7 @@ package com.jingweihe.oj.judge.codesandbox.impl;
 import com.jingweihe.oj.judge.codesandbox.CodeSandBox;
 import com.jingweihe.oj.judge.codesandbox.mode.ExecuteCodeRequest;
 import com.jingweihe.oj.judge.codesandbox.mode.ExecuteCodeResponse;
-import com.jingweihe.oj.model.dto.questionsubmit.JudgeInfo;
+import com.jingweihe.oj.judge.codesandbox.mode.JudgeInfo;
 import com.jingweihe.oj.model.enums.QuestionSubmitStatusEnum;
 
 import java.util.List;

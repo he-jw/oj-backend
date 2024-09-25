@@ -2,7 +2,7 @@ package com.jingweihe.oj.judge.strategy;
 
 import com.jingweihe.oj.common.ErrorCode;
 import com.jingweihe.oj.exception.BusinessException;
-import com.jingweihe.oj.model.dto.questionsubmit.JudgeInfo;
+import com.jingweihe.oj.judge.codesandbox.mode.JudgeInfo;
 import com.jingweihe.oj.model.entity.QuestionSubmit;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.jingweihe.oj.model.dto.questionsubmit;
+package com.jingweihe.oj.judge.codesandbox.mode;
 
 import lombok.Data;
 

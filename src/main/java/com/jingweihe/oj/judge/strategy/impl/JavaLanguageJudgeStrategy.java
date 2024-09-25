@@ -5,10 +5,9 @@ import com.jingweihe.oj.judge.strategy.JudgeContext;
 import com.jingweihe.oj.judge.strategy.JudgeStrategy;
 import com.jingweihe.oj.judge.strategy.JudgeStrategyConfig;
 import com.jingweihe.oj.model.dto.question.JudgeConfig;
-import com.jingweihe.oj.model.dto.questionsubmit.JudgeInfo;
+import com.jingweihe.oj.judge.codesandbox.mode.JudgeInfo;
 import com.jingweihe.oj.model.entity.Question;
 import com.jingweihe.oj.model.enums.JudgeInfoMessageEnum;
-import com.jingweihe.oj.model.enums.QuestionSubmitLanguageEnum;
 
 import java.util.List;
 
