@@ -25,7 +25,7 @@ public class DefaultJudgeStrategy implements JudgeStrategy {
     @Override
     public JudgeInfo doJudge(JudgeContext judgeContext) {
         JudgeInfo judgeInfo = judgeContext.getJudgeInfo();
-        List<String> inputList = judgeContext.getInputList();
+        List<String> expectOutputList = judgeContext.getExpectOutputList();
         List<String> outputList = judgeContext.getOutputList();
         Question question = judgeContext.getQuestion();
 
@@ -34,12 +34,12 @@ public class DefaultJudgeStrategy implements JudgeStrategy {
         JudgeInfoMessageEnum judgeInfoMessageEnum = JudgeInfoMessageEnum.WRONG_ANSWER;
         judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
         // 1.1 先判断沙箱执行的结果输出数量和预期输出数量是否相等
-        if (inputList.size() != outputList.size()){
+        if (expectOutputList.size() != outputList.size()){
             return judgeInfoResponse;
         }
         // 1.2 依次判断每一项的输出和预期输出是否相等
         for (int i = 0; i < outputList.size(); i++) {
-            if (!outputList.get(i).equals(inputList.get(i))){
+            if (!outputList.get(i).equals(expectOutputList.get(i))){
                 return judgeInfoResponse;
             }
         }

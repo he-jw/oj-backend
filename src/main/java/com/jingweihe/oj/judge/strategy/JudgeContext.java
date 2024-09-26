@@ -21,7 +21,7 @@ public class JudgeContext {
 
     private JudgeInfo judgeInfo;
 
-    private List<String> inputList;
+    private List<String> expectOutputList;
 
     private List<String> outputList;
 

@@ -91,10 +91,14 @@ public class JudgeServiceImpl implements JudgeService {
 
         // 3）构建判题请求参数，执行判题
         // 3.1 构建参数
+        List<String> expectOutputList = JSONUtil.toList(judgeCaseStr, JudgeCase.class)
+                .stream()
+                .map(JudgeCase::getOutput)
+                .toList();
         JudgeContext judgeContext = JudgeContext.builder()
                 .judgeInfo(judgeInfo)
                 .outputList(outputList)
-                .inputList(inputList)
+                .expectOutputList(expectOutputList)
                 .question(question)
                 .questionSubmit(questionSubmit)
                 .build();

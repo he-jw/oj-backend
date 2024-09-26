@@ -25,7 +25,7 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
     @Override
     public JudgeInfo doJudge(JudgeContext judgeContext) {
         JudgeInfo judgeInfo = judgeContext.getJudgeInfo();
-        List<String> inputList = judgeContext.getInputList();
+        List<String> expectOutputList = judgeContext.getExpectOutputList();
         List<String> outputList = judgeContext.getOutputList();
         Question question = judgeContext.getQuestion();
 
@@ -34,37 +34,42 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
         JudgeInfoMessageEnum judgeInfoMessageEnum = JudgeInfoMessageEnum.WRONG_ANSWER;
         judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
         // 1.1 先判断沙箱执行的结果输出数量和预期输出数量是否相等
-        if (inputList.size() != outputList.size()){
+        if (expectOutputList.size() != outputList.size()){
             return judgeInfoResponse;
         }
         // 1.2 依次判断每一项的输出和预期输出是否相等
         for (int i = 0; i < outputList.size(); i++) {
-            if (!outputList.get(i).equals(inputList.get(i))){
+            if (!outputList.get(i).equals(expectOutputList.get(i))){
                 return judgeInfoResponse;
             }
         }
         // 1.3 判断题目的限制是否符合需求
-        Long memory = judgeInfo.getMemory();
-        Long time = judgeInfo.getTime();
-        judgeInfoResponse.setMemory(memory);
-        judgeInfoResponse.setTime(time);
-
         String judgeConfigStr = question.getJudgeConfig();
         JudgeConfig judgeConfig = JSONUtil.toBean(judgeConfigStr, JudgeConfig.class);
 
-        Long timeLimit = judgeConfig.getTimeLimit();
-        Long memoryLimit = judgeConfig.getMemoryLimit();
-        if (memory > memoryLimit){
-            judgeInfoMessageEnum = JudgeInfoMessageEnum.MEMORY_LIMIT_EXCEEDED;
-            judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
-            return judgeInfoResponse;
+        // 判断内存是否超出限制
+        Long memory = judgeInfo.getMemory();
+        if (memory != null){
+            judgeInfoResponse.setMemory(memory);
+            Long memoryLimit = judgeConfig.getMemoryLimit();
+            if (memory > memoryLimit){
+                judgeInfoMessageEnum = JudgeInfoMessageEnum.MEMORY_LIMIT_EXCEEDED;
+                judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
+                return judgeInfoResponse;
+            }
         }
-        // Java程序本身需要额外执行10秒钟
-        long JAVA_PROGRAM_TIME_COST = 10000L;
-        if ((time - JAVA_PROGRAM_TIME_COST) > timeLimit){
-            judgeInfoMessageEnum = JudgeInfoMessageEnum.TIME_LIMIT_EXCEEDED;
-            judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
-            return judgeInfoResponse;
+        // 判断时间是否超出限制
+        Long time = judgeInfo.getTime();
+        if (time != null) {
+            judgeInfoResponse.setTime(time);
+            Long timeLimit = judgeConfig.getTimeLimit();
+            // Java程序本身需要额外执行10秒钟
+            long JAVA_PROGRAM_TIME_COST = 10000L;
+            if ((time - JAVA_PROGRAM_TIME_COST) > timeLimit){
+                judgeInfoMessageEnum = JudgeInfoMessageEnum.TIME_LIMIT_EXCEEDED;
+                judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
+                return judgeInfoResponse;
+            }
         }
         judgeInfoMessageEnum = JudgeInfoMessageEnum.ACCEPTED;
         judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
